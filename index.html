@@ -23,6 +23,17 @@
       });
     </script>
     <style type="text/css">
+      a {
+        border: none;
+        outline: none;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      a:hover {
+        color: white;
+      }
+
       body {
         -webkit-font-smoothing: antialiased;
       }
@@ -61,15 +72,34 @@
         box-shadow: 3px 3px 16px rgba(0,0,0,0.35);
         //text-shadow: none !important;
       }
+      #header-secondary {
+        //background: linear-gradient(to bottom, rgba(20,20,20, 0.35), rgba(20,20,20, 0.45));
+        color: #ffffff;
+        text-shadow: 0px 0px 1px rgba(0,0,0,0.7);
+        border-color: rgba(255, 255, 255, 0.5);
+        border-style: solid;
+        border-width: 0.5px;
+        box-shadow: none;
+        cursor: pointer;
+      }
+      #header-secondary:hover {
+        background-color: #ffffff;
+        color: rgba(188,103,193,1.0);
+        text-shadow: none;
+      }
+      #header-secondary:active {
+      }
+
       #header-primary {
         background: linear-gradient(to bottom, #ffffff, rgba(255,255,255,0.8));
         color: #6754BA;
+        cursor: pointer;
       }
-      #header-secondary {
-        border-color: #ffffff;
-        border-style: solid;
-        border-width: 0.25px;
-        box-shadow: none !important;
+      #header-primary:hover {
+        background: linear-gradient(to bottom, #ffffff, rgba(255,255,255,0.9));
+      }
+      #header-primary:active {
+        background: linear-gradient(to top, #ffffff, rgba(255,255,255,0.9));
       }
 
       #hd-wd-outer {
@@ -728,31 +758,32 @@ Fewer experiments required.
             <div class="footer-col" id="footer-c1">
               <div class="footer-col-header">Solutions</div>
               <div class="footer-col-items">
-                Process<br>
-                Cybersecurity<br>
-                Marketing
+                <a href='#'>Process</a><br>
+                <a href='#'>Cybersecurity</a><br>
+                <a href='#'>Marketing</a>
               </div>
             </div>
             <div class="footer-col" id="footer-c2">
               <div class="footer-col-header">Whitepapers</div>
               <div class="footer-col-items">
-                Technology<br>
-                Your business<br>
-                Roadmap
+                <a href='#'>Technology</a><br>
+                <a href='#'>Your business</a><br>
+                <a href='#'>Roadmap</a>
               </div>
             </div>
             <div class="footer-col" id="footer-c3">
               <div class="footer-col-header">Company</div>
               <div class="footer-col-items">
-                About us<br>
-                About the team<br>
-                Jobs
+                <a href='#'>About us</a><br>
+                <a href='#'>About the team</a><br>
+                <a href='#'>Jobs</a>
               </div>
             </div>
             <div class="footer-col" id="footer-c4">
               <div class="footer-col-header">Contact us</div>
               <div class="footer-col-items">
                 <b>Lightbeam</b><br>
+                info@lightbeam.ai<br>
                 sales@lightbeam.ai
               </div>
             </div>
