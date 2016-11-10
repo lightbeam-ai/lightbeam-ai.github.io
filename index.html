@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lightbeam</title>
+    <script src="https://s3-us-west-2.amazonaws.com/cdn.thegrid.io/gss/v2.0.0/v2.0.0/gss.js"></script>
+    <script type="text/javascript">
+      /* you can see what is going on in the engine with console.log(window.engine) */
+      window.engine = new GSS(document);
+    </script>
+    <style type="text/css">
+      body {
+        -webkit-font-smoothing: antialiased;
+      }
+
+      h1 {
+        font-family: Futura, sans-serif;
+        font-weight: normal;
+      }
+      h2 {
+        font-family: Rockwell, serif;
+        font-weight: normal;
+      }
+      .label {
+        font-family: Futura, sans-serif;
+        font-weight: normal;
+      }
+      #header {
+        background: linear-gradient(150deg, #3C82DE, #B35DCF, #E8997C);
+      }
+      #header * {
+        color: #ffffff;
+        text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+      }
+      #header h1 {
+        color: rgba(255, 255, 255, 0.95);
+      }
+      #header h2 {
+        text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .button {
+        font-family: "Futura", sans-serif;
+        border-radius: 8px;
+        text-align: center;
+        font-size: 17px;
+        box-shadow: 3px 3px 16px rgba(0,0,0,0.35);
+        text-shadow: none !important;
+      }
+      #header-primary {
+        background: linear-gradient(to bottom, #ffffff, rgba(255,255,255,0.8));
+        color: #6754BA;
+      }
+      #header-secondary {
+        border-color: #ffffff;
+        border-style: solid;
+        border-width: 0.25px;
+        box-shadow: none !important;
+      }
+      #features {
+        z-index: 1;
+        box-shadow: 0 0 16px rgba(60,10,73,0.44);
+      }
+
+      #walkthrough {
+        z-index: 0;
+        background: linear-gradient(130deg, #E8997C, #B35DCF, #3C82DE);
+      }
+
+      .text-header {
+        text-align: center;
+        font-family: Futura, sans-serif;
+        font-size: 36px;
+        line-height: 54px;
+        color: #8B41A0;
+      }
+
+      .text-description {
+        text-align: center;
+        font-family: Rockwell, serif;
+        font-size: 20px;
+        line-height: 30px;
+        color: rgba(107,124,148,1.0);
+      }
+
+      .feature-box {
+        background-color: white;
+        border-color: rgba(60,10,73,0.32);
+        border-style: solid;
+        border-width: 0.25px;
+        box-shadow: 0 0 30px rgba(60, 10, 73, 0.12);
+      }
+
+      #box-left, #box-right {
+        z-index: 3;
+      }
+
+      #box-center {
+        z-index: 4;
+      }
+
+      #box-bottom {
+        background-color: white;
+        border-color: rgba(60,10,73,0.32);
+        border-style: solid;
+        border-width: 0.25px;
+        box-shadow: 0 0 30px rgba(60, 10, 73, 0.12);
+
+        z-index: 2;
+      }
+      #cta {
+        z-index: 1;
+        box-shadow: 0 0 64px rgba(60,10,73,0.44);
+        background-color: #F6F9FC;
+      }
+
+        #cta-header, #cta-btn1, #cta-btn2 {
+          text-align: center;
+          font-family: Futura, sans-serif;
+        }
+
+        #cta-header {
+          color: #8B41A0;
+        }
+
+
+      #footer {
+        z-index: 0;
+        background: linear-gradient(170deg, #7871D1, #3F97EA, #00CDED);
+      }
+
+      .footer-col-header, .footer-col-items {
+        text-shadow: 1px 1px 1px rgba(0,0,0,0.35);
+        color: rgba(255,255,255,0.85);
+      }
+
+      .footer-col-header {
+        font-family: Futura, sans-serif;
+        font-size: 21px;
+      }
+      .footer-col-items {
+        font-family: Futura, sans-serif;
+        line-height: 19px;
+        font-size: 15px;
+      }
+
+    </style>
+    <style type="text/gss">
+      body {
+        background-color: #eeeeee;
+      }
+
+      #main {
+        width: == ::window[width] * 1.0 !strong;
+        top: == 0 !strong;
+        height: ==10000;
+        center: == ::window[center];
+
+        box-shadow: 0px 0px 5px 0px #888888;
+        background-color: #ffffff;
+      }
+
+      /* content grid */
+      #g-outer[top] == #main[top];
+      #g-outer[width] == #main[width] * 0.8;
+      #g-outer[width] <= 1100 !strong;
+      #g-outer[cx] == #main[cx];
+
+      /* other formatting */
+      .text-header {
+        font-size: == 36;
+        line-height: == 54;
+      }
+
+      .text-description {
+        font-size: == 18;
+        line-height: == 27;
+      }
+
+      /* rows section */
+      /* - universal horizontal layout */
+      .row[width] == #main[width];
+      .row[cx] == #main[cx];
+
+      /* - universal vertical layout */
+      /* -- all */
+      @v |-(.row (>=0))-...~| gap(0) in(#main);
+
+      /* -- header */
+      @v |-24-(#logo)-12-(#navbar)-54-(#jumbotron-title)-36-(#jumbotron-subtitle)-36-(#header-primary)-96-| in(#header);
+
+      /* header definitions */
+
+        #logo[cx] == (#first-label[left] + #last-label[right]) * 0.5;
+        #logo[width] == #navbar[width] * 0.6;
+        #logo[height] == #logo[width] * 116 / 578 !strong;
+
+        h1 {
+          line-height: == 54;
+          font-size: == 36;
+
+          margin: == 0;
+        }
+        h2 {
+          line-height: == 27;
+          font-size: == 18;
+
+          margin: == 0;
+        }
+
+        #navbar[width] == #main[width] * 0.8;
+        #navbar[cx] == #main[cx];
+        #navbar[height] == 36;
+
+        #jumbotron-title[bottom] ==
+          #jumbotron-title[top] +
+          #jumbotron-title[line-height] * 3;
+        #jumbotron-title[width] == 432;
+
+        #jumbotron-subtitle[bottom] ==
+          #jumbotron-subtitle[top] +
+          #jumbotron-subtitle[line-height] * 4;
+        #jumbotron-subtitle[width] == #jumbotron-title[width];
+
+        @h |-0-(#jumbotron) in(#g-outer);
+
+        .label {
+          font-size: == 18;
+          width: == 100;
+        }
+
+        @h |-(.label)-...-| gap(50) in(#navbar);
+
+        .button {
+          height: == 48;
+          line-height: == &[height];
+        }
+
+        #header-primary[width] == 168;
+
+        #header-secondary[cy] == #header-primary[cy];
+        #header-secondary[width] == 144;
+        @h |-0-(#header-primary)-36-(#header-secondary) in(#jumbotron);
+
+      /* features definitions */
+
+        @v |-96-(#top-label)-(#box-cluster)-| gap(72) in(#features);
+
+        /* top-label */
+          @v |-(#top-label .text-header (== 63))-(#top-label .text-description (== 90))-| gap(0) in(#top-label);
+          #top-label[cx] == #g-outer[cx];
+          (#top-label .text-header)[width] ==
+            #top-label[width] ==
+            (#top-label .text-description)[width] ==
+            #g-outer[width] - 270;
+
+        /* feature boxes */
+          #box-left[border-bottom-left-radius] ==
+            #box-left[border-top-left-radius] ==
+            #box-center[border-radius] ==
+            #box-right[border-bottom-right-radius] ==
+            #box-right[border-top-right-radius] ==
+            #box-bottom[border-radius] ==
+            24;
+
+          #box-center[top] == #box-cluster[top];
+          #box-left[cy] == #box-center[cy] == #box-right[cy];
+          #box-left[height] == 400;
+          #box-right[height] == #box-left[height];
+          #box-center[height] == #box-left[height] + 72;
+          #box-bottom[top] == #box-left[bottom] - #box-left[border-bottom-left-radius];
+          #box-bottom[height] == 300;
+          #box-cluster[height] == #box-center[height] + #box-bottom[height];
+
+          @h |-48-(#box-cluster)-48-| in(#g-outer);
+          @h |-(.feature-box(== #box-cluster[width] / 3))-0-...-| in(#box-cluster);
+          #box-bottom[cx] == #g-outer[cx];
+          #box-bottom[width] == #box-cluster[width] - 96;
+
+      /* walkthrough definitions */
+        /* styling */
+        .wt-bubble, .wt-header {
+          font-family: Futura, sans-serif;
+          font-size: == 24;
+          color: rgba(255, 255, 255, 0.95);
+          text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+          line-height: == &[height];
+        }
+
+        #walkthrough .text-header {
+          color: #ffffff;
+          text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        }
+
+        .wt-desc {
+          font-family: Rockwell, serif;
+          font-size: == 18;
+          font-weight: lighter;
+          color: rgba(255, 255, 255, 0.85);
+          text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+        }
+
+        #wt-1, #wt-d1 {
+          text-align: right;
+        }
+
+        .wt-bubble {
+          text-align: center;
+          background-color: rgba(255, 255, 255, 0.15);
+          border-radius: == &[width] / 2;
+          box-shadow: 0 0 96px rgba(255, 255, 255, 0.2);
+        }
+
+        .wt-example {
+          background-color: rgba(255, 255, 255, 0.15);
+        }
+        .wt-example[border-radius] == 2 * .wt-bubble[border-radius];
+
+        /* vertical */
+        wt-title-height == 54;
+        wt-desc-height == 81;
+        wt-note-height == wt-title-height + wt-desc-height;
+        wt-box-height == 324;
+        wt-note-gap == wt-box-height + 96; /* top of one bubble to top of next */
+        2 * wt-box-gap + 3 * wt-box-height == 2 * wt-note-gap + wt-note-height;
+
+        @v <#walkthrough[top]>-96-(#walkthrough .text-header)-72-<wt-upper-limit>;
+
+        @v <wt-upper-limit>-0-(.wt-bubble)-... gap(wt-note-gap - wt-title-height);
+        @v <wt-upper-limit>-0-(.wt-example (== wt-box-height))-... gap(wt-box-gap);
+        @v <wt-upper-limit>-(.wt-line)-... gap(wt-title-height);
+
+        .wt-line {
+          width: == 2;
+          height: == wt-note-gap - wt-title-height;
+          background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        #walkthrough[bottom] == #wt-e2[bottom] + 96;
+
+        #wt-0[top] == #wt-b0[top];
+        #wt-b0[bottom] == #wt-d0[top];
+
+        #wt-1[top] == #wt-b1[top];
+        #wt-b1[bottom] == #wt-d1[top];
+
+        #wt-2[top] == #wt-b2[top];
+        #wt-b2[bottom] == #wt-d2[top];
+
+        .wt-bubble[height] == .wt-header[height] == wt-title-height;
+        .wt-desc[height] == wt-desc-height;
+        .wt-example[height] == wt-box-height;
+
+        /* horizontal */
+        .wt-bubble[width] == .wt-bubble[height];
+        .wt-bubble[cx] == page-midpoint == #g-outer[cx];
+        .wt-line[cx] == page-midpoint;
+        wt-standard-spacing == 36;
+
+        /* horizontally, titles and desc are the same */
+        #wt-d0[left] == #wt-0[left];
+        #wt-d0[right] == #wt-0[right];
+        #wt-d1[left] == #wt-1[left];
+        #wt-d1[right] == #wt-1[right];
+        #wt-d2[left] == #wt-2[left];
+        #wt-d2[right] == #wt-2[right];
+
+          /* bubble on left: 1 */
+          @h |-144-(#wt-1)-(#wt-b1)-(#wt-e1)-96-| gap(wt-standard-spacing) in(#g-outer);
+
+          /* bubble on right: 0, 2 */
+          @h |-96-(#wt-e0)-(#wt-b0)-(#wt-0)-144-| gap(wt-standard-spacing) in(#g-outer);
+          @h |-96-(#wt-e2)-(#wt-b2)-(#wt-2)-144-| gap(wt-standard-spacing) in(#g-outer);
+
+        /* misc */
+        #walkthrough .text-header {
+          color: #ffffff;
+          height: == &[line-height];
+        }
+        (#walkthrough .text-header)[width] == #g-outer[width];
+        (#walkthrough .text-header)[cx] == #g-outer[cx];
+
+      /* cta */
+
+        /* styling */
+
+        /* vertical */
+        @v |-(#cta-header)-36-(#cta-btnrow)-| gap(54) in(#cta);
+        #cta-header[height] == #cta-header[line-height] == #cta-btnrow[height] == 54;
+        #cta-header[font-size] == 36;
+
+        /* horizontal */
+        #cta-header[cx] == #cta-btnrow[cx] == page-midpoint;
+        #cta-header[left] == #g-outer[left];
+        #cta-btnrow[width] == 380;
+        @h |-0-(#cta-btn1 (== 144))-54-(#cta-btn2 (== 144))-0-| in(#cta-btnrow);
+
+      /* footer TODO */
+      #footer {
+        height: == 300;
+      }
+
+
+        /* horizontal */
+        .footer-col[width] == .footer-col-items[width] == 132;
+        @h |-(.footer-col)-...-| gap(112) in(#g-outer);
+
+        /* vertical */
+        .footer-col[top] == #footer[top] + 96;
+        .footer-col-header[height] == .footer-col-header[line-height];
+        @v <.footer-col[top]>-0-(.footer-col-header)-24-(.footer-col-items);
+
+      //
+    </style>
+  </head>
+  <body>
+    <div id="page">
+      <div id="main">
+        <div id="g-outer">
+          <div class="row" id="header">
+            <img id="logo" src="./logo.png" />
+            <div id="navbar">
+              <div id="first-label" class="label">
+                Products
+              </div>
+              <div class="label">
+                Solutions
+              </div>
+              <div class="label">
+                Whitepapers
+              </div>
+              <div id="last-label" class="label">
+                About us
+              </div>
+            </div>
+            <div id="jumbotron">
+              <h1 id="jumbotron-title">
+                Cut costs.<br>Get instant answers.<br>Data in English.
+              </h1>
+              <h2 id="jumbotron-subtitle">
+                Lightbeam helps process engineers<br>
+                solve problems faster and get drugs<br>
+                to market with an intuitive, English-<br>
+                based interface to data analysis.
+              </h2>
+              <div class="button" id="header-primary">Schedule demo</div>
+              <div class="button" id="header-secondary">Learn more</div>
+            </div>
+          </div>
+          <div class="row" id="features">
+            <div id="top-label">
+              <div class="text-header">
+                The robot analyst built for process engineers
+              </div>
+              <div class="text-description">
+                Why do simple things have to be so complicated? At Lightbeam, we believe they don&rsquo;t. Beneath our intuitive English interface, there&rsquo;s a powerful data integration engine and an analytics suite supporting both machine learning and numerical modeling. No code required.
+              </div>
+            </div>
+
+            <div id="box-cluster">
+              <div id="box-left" class="feature-box"></div>
+              <div id="box-center" class="feature-box"></div>
+              <div id="box-right" class="feature-box"></div>
+              <div id="box-bottom"></div>
+            </div>
+          </div>
+          <div class="row" id="walkthrough">
+            <div class="text-header">
+              How it works
+            </div>
+            <div class="wt-line" id="wt-l01"></div>
+            <div class="wt-line" id="wt-l12"></div>
+            <div class="wt-bubble" id="wt-b0">
+              1
+            </div>
+            <div class="wt-bubble" id="wt-b1">
+              2
+            </div>
+            <div class="wt-bubble" id="wt-b2">
+              3
+            </div>
+            <div class="wt-header" id="wt-0">
+              Pull your data
+            </div>
+            <div class="wt-desc" id="wt-d0">
+              Data integration is a sentence away with Lightbeam, which is capable of supporting any database format or schema.
+            </div>
+            <div class="wt-header" id="wt-1">
+              Run numerical models
+            </div>
+            <div class="wt-desc" id="wt-d1">
+              Lightbeam allows you to run many parallel CSTR models using data from 3 different databases and across 20 locations with one sentence.
+            </div>
+            <div class="wt-header" id="wt-2">
+              Find a pattern
+            </div>
+            <div class="wt-desc" id="wt-d2">
+              It&rsquo;s easy to do root cause analysis when hypothesis verification is a second and a question away.
+            </div>
+            <div class="wt-example" id="wt-e0">
+            </div>
+            <div class="wt-example" id="wt-e1">
+            </div>
+            <div class="wt-example" id="wt-e2">
+            </div>
+          </div>
+          <div class="row" id="cta">
+            <div id="cta-header">So, what do you think?</div>
+            <div id="cta-btnrow">
+              <div id="cta-btn1">Read whitepapers</div>
+              <div id="cta-btn2">Schedule demo</div>
+            </div>
+          </div>
+          <div class="row" id="footer">
+            <div class="footer-col" id="footer-c1">
+              <div class="footer-col-header">Solutions</div>
+              <div class="footer-col-items">
+                Process<br>
+                Cybersecurity<br>
+                Marketing
+              </div>
+            </div>
+            <div class="footer-col" id="footer-c2">
+              <div class="footer-col-header">Whitepapers</div>
+              <div class="footer-col-items">
+                Technology<br>
+                Your business<br>
+                Roadmap
+              </div>
+            </div>
+            <div class="footer-col" id="footer-c3">
+              <div class="footer-col-header">Company</div>
+              <div class="footer-col-items">
+                About us<br>
+                About the team<br>
+                Jobs
+              </div>
+            </div>
+            <div class="footer-col" id="footer-c4">
+              <div class="footer-col-header">Contact us</div>
+              <div class="footer-col-items">
+                <b>Lightbeam</b><br>
+                sales@lightbeam.ai
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
