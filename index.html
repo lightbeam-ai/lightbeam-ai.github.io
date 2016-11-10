@@ -29,13 +29,13 @@
       }
       #header * {
         color: #ffffff;
-        text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        //text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
       }
       #header h1 {
         color: rgba(255, 255, 255, 0.95);
       }
       #header h2 {
-        text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+        //text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
         color: rgba(255, 255, 255, 0.85);
       }
       .button {
@@ -44,7 +44,7 @@
         text-align: center;
         font-size: 17px;
         box-shadow: 3px 3px 16px rgba(0,0,0,0.35);
-        text-shadow: none !important;
+        //text-shadow: none !important;
       }
       #header-primary {
         background: linear-gradient(to bottom, #ffffff, rgba(255,255,255,0.8));
@@ -63,7 +63,7 @@
 
       #walkthrough {
         z-index: 0;
-        background: linear-gradient(130deg, #E8997C, #B35DCF, #3C82DE);
+        background: linear-gradient(225deg, #E8997C, #B35DCF, #3C82DE);
       }
 
       .text-header {
@@ -125,11 +125,11 @@
 
       #footer {
         z-index: 0;
-        background: linear-gradient(170deg, #7871D1, #3F97EA, #00CDED);
+        background: linear-gradient(195deg, #7871D1, #3F97EA, #00CDED);
       }
 
       .footer-col-header, .footer-col-items {
-        text-shadow: 1px 1px 1px rgba(0,0,0,0.35);
+        //text-shadow: 1px 1px 1px rgba(0,0,0,0.35);
         color: rgba(255,255,255,0.85);
       }
 
@@ -152,7 +152,7 @@
       #main {
         width: == ::window[width] * 1.0 !strong;
         top: == 0 !strong;
-        height: ==10000;
+        height: == 5000;
         center: == ::window[center];
 
         box-shadow: 0px 0px 5px 0px #888888;
@@ -207,28 +207,25 @@
           margin: == 0;
         }
 
-        #navbar[width] == #main[width] * 0.8;
+        #navbar {
+          width: == #main[width] * 0.8;
+          height: == 36;
+        }
         #navbar[cx] == #main[cx];
-        #navbar[height] == 36;
 
-        #jumbotron-title[bottom] ==
-          #jumbotron-title[top] +
-          #jumbotron-title[line-height] * 3;
-        #jumbotron-title[width] == 432;
-
-        #jumbotron-subtitle[bottom] ==
-          #jumbotron-subtitle[top] +
-          #jumbotron-subtitle[line-height] * 4;
-        #jumbotron-subtitle[width] == #jumbotron-title[width];
+        #jumbotron-title, #jumbotron-subtitle {
+          height: == &[intrinsic-height];
+          width: == 432;
+        }
 
         @h |-0-(#jumbotron) in(#g-outer);
 
         .label {
           font-size: == 18;
-          width: == 100;
+          width: == &[intrinsic-width];
         }
 
-        @h |-(.label)-...-| gap(50) in(#navbar);
+        @h |-(.label)-...-| gap(60) in(#navbar);
 
         .button {
           height: == 48;
@@ -282,13 +279,13 @@
           font-family: Futura, sans-serif;
           font-size: == 24;
           color: rgba(255, 255, 255, 0.95);
-          text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+          //text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
           line-height: == &[height];
         }
 
         #walkthrough .text-header {
           color: #ffffff;
-          text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+          //text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
         }
 
         .wt-desc {
@@ -296,7 +293,7 @@
           font-size: == 18;
           font-weight: lighter;
           color: rgba(255, 255, 255, 0.85);
-          text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+          //text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
         }
 
         #wt-1, #wt-d1 {
@@ -313,15 +310,15 @@
         .wt-example {
           background-color: rgba(255, 255, 255, 0.15);
         }
-        .wt-example[border-radius] == 2 * .wt-bubble[border-radius];
+        .wt-example[border-radius] == 1 * .wt-bubble[border-radius];
 
         /* vertical */
         wt-title-height == 54;
         wt-desc-height == 81;
         wt-note-height == wt-title-height + wt-desc-height;
-        wt-box-height == 324;
+        wt-box-height == 240;
         wt-note-gap == wt-box-height + 96; /* top of one bubble to top of next */
-        2 * wt-box-gap + 3 * wt-box-height == 2 * wt-note-gap + wt-note-height;
+        wt-box-gap + wt-box-height == wt-note-gap;
 
         @v <#walkthrough[top]>-96-(#walkthrough .text-header)-72-<wt-upper-limit>;
 
@@ -438,9 +435,9 @@
               </h1>
               <h2 id="jumbotron-subtitle">
                 Lightbeam helps process engineers<br>
-                solve problems faster and get drugs<br>
-                to market with an intuitive, English-<br>
-                based interface to data analysis.
+                solve problems faster and get drugs to<br>
+                market with an intuitive, English-based<br>
+                interface to data analysis.
               </h2>
               <div class="button" id="header-primary">Schedule demo</div>
               <div class="button" id="header-secondary">Learn more</div>
