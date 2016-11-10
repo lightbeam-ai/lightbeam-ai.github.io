@@ -56,9 +56,36 @@
         border-width: 0.25px;
         box-shadow: none !important;
       }
+
+      #hd-wd-outer {
+        background-color: rgba(255, 255, 255, 0.5);
+        z-index: 0.25;
+      }
+
+      #hd-wd-inner {
+        background-color: rgba(255, 255, 255, 0.85);
+        z-index: 0.5;
+      }
+
+      .hd-wd-circle {
+        z-index: 0.75;
+        box-shadow: 0 0 2px rgba(0,0,0,0.25);
+        background-color: rgba(255, 255, 255, 0.95);
+      }
+
+      #hd-wd-c0 {
+        /*background-color: rgba(251, 70, 70, 0.8);*/
+      }
+      #hd-wd-c1 {
+        /*background-color: rgba(254, 181, 37, 0.8);*/
+      }
+      #hd-wd-c2 {
+        /*background-color: rgba(41, 195, 51, 0.8);*/
+      }
+
       #features {
         z-index: 1;
-        box-shadow: 0 0 16px rgba(60,10,73,0.44);
+        box-shadow: 0 0 64px rgba(60,10,73,0.44);
       }
 
       #walkthrough {
@@ -152,12 +179,11 @@
       #main {
         width: == ::window[width] * 1.0 !strong;
         top: == 0 !strong;
-        height: == 5000;
-        center: == ::window[center];
 
         box-shadow: 0px 0px 5px 0px #888888;
         background-color: #ffffff;
       }
+      #main[cx] == ::window[cx];
 
       /* content grid */
       #g-outer[top] == #main[top];
@@ -219,6 +245,8 @@
         }
 
         @h |-0-(#jumbotron) in(#g-outer);
+        @h |-(#jumbotron-title)-| gap(0) in(#jumbotron);
+        @h |-(#jumbotron-subtitle)-| gap(0) in(#jumbotron);
 
         .label {
           font-size: == 18;
@@ -238,6 +266,41 @@
         #header-secondary[width] == 144;
         @h |-0-(#header-primary)-36-(#header-secondary) in(#jumbotron);
 
+        /* window simulation */
+          /* bezel on outside of window */
+          hd-wd-edge-width == 4 !required;
+          /* titlebar size */
+          hd-wd-edge-height == 42 !required;
+
+          #hd-wd-inner[border-radius] == #hd-wd-outer[border-radius] == 2 * hd-wd-edge-width;
+
+          /* vertical */
+            /* starts at top */
+            #hd-wd-outer[top] == #jumbotron-title[top];
+            /* none of the bottom radius is shown */
+            #hd-wd-outer[bottom] == #features[top] + 3 * hd-wd-edge-width;
+
+            #hd-wd-inner[top] == #hd-wd-outer[top] + hd-wd-edge-height;
+            #hd-wd-inner[bottom] == #hd-wd-outer[bottom] - hd-wd-edge-width;
+
+
+
+          /* horizontal */
+            /* it's next to the title's right edge, and bounded by outer div */
+            @h (#header-secondary)-96-(#hd-wd-outer)-0-| in(#g-outer);
+
+            /* center inner on outer */
+            #hd-wd-inner[left] == #hd-wd-outer[left] + hd-wd-edge-width;
+            #hd-wd-inner[cx] == #hd-wd-outer[cx];
+
+          circle-diameter == hd-wd-edge-width * 3 !required;
+          .hd-wd-circle[width] ==
+            .hd-wd-circle[height] ==
+            2 * .hd-wd-circle[border-radius] ==
+            circle-diameter;
+          #hd-wd-c0[cy] == #hd-wd-c1[cy] == #hd-wd-c2[cy] == (#hd-wd-outer[top] + #hd-wd-inner[top]) / 2;
+          @h <#hd-wd-outer[left]>-[circle-diameter]-(#hd-wd-c0)-(#hd-wd-c1)-(#hd-wd-c2) gap(circle-diameter * 0.66);
+
       /* features definitions */
 
         @v |-96-(#top-label)-(#box-cluster)-| gap(72) in(#features);
@@ -251,22 +314,22 @@
             #g-outer[width] - 270;
 
         /* feature boxes */
-          #box-left[border-bottom-left-radius] ==
+          ft-box-radius ==
+            #box-left[border-bottom-left-radius] ==
             #box-left[border-top-left-radius] ==
             #box-center[border-radius] ==
             #box-right[border-bottom-right-radius] ==
             #box-right[border-top-right-radius] ==
             #box-bottom[border-radius] ==
             24;
-
           #box-center[top] == #box-cluster[top];
-          #box-left[cy] == #box-center[cy] == #box-right[cy];
-          #box-left[height] == 400;
-          #box-right[height] == #box-left[height];
-          #box-center[height] == #box-left[height] + 72;
-          #box-bottom[top] == #box-left[bottom] - #box-left[border-bottom-left-radius];
-          #box-bottom[height] == 300;
-          #box-cluster[height] == #box-center[height] + #box-bottom[height];
+            #box-left[height] == #box-right[height] == #box-center[height] - 72 == 400;
+            #box-left[cy] == #box-center[cy] == #box-right[cy];
+
+            #box-bottom[top] == #box-left[bottom] - ft-box-radius;
+            #box-bottom[height] == 300;
+
+            #box-cluster[height] == #box-center[height] + #box-bottom[height];
 
           @h |-48-(#box-cluster)-48-| in(#g-outer);
           @h |-(.feature-box(== #box-cluster[width] / 3))-0-...-| in(#box-cluster);
@@ -392,20 +455,18 @@
         @h |-0-(#cta-btn1 (== 144))-54-(#cta-btn2 (== 144))-0-| in(#cta-btnrow);
 
       /* footer TODO */
-      #footer {
-        height: == 300;
-      }
-
-
         /* horizontal */
         .footer-col[width] == .footer-col-items[width] == 132;
         @h |-(.footer-col)-...-| gap(112) in(#g-outer);
 
         /* vertical */
-        .footer-col[top] == #footer[top] + 96;
-        .footer-col-header[height] == .footer-col-header[line-height];
-        @v <.footer-col[top]>-0-(.footer-col-header)-24-(.footer-col-items);
+          /* #footer[top] grounded in .row */
 
+            @v |-(.footer-col)-| gap(96) in(#footer);
+            @v |-0-(.footer-col-header)-24-(.footer-col-items)-0-| in(.footer-col);
+            .footer-col-header, .footer-col-items {
+              height: >= &[intrinsic-height];
+            }
       //
     </style>
   </head>
@@ -441,6 +502,14 @@
               </h2>
               <div class="button" id="header-primary">Schedule demo</div>
               <div class="button" id="header-secondary">Learn more</div>
+            </div>
+            <div>
+              <div id="hd-wd-outer">
+                <div class="hd-wd-circle" id="hd-wd-c0"></div>
+                <div class="hd-wd-circle" id="hd-wd-c1"></div>
+                <div class="hd-wd-circle" id="hd-wd-c2"></div>
+                <div id="hd-wd-inner"></div>
+              </div>
             </div>
           </div>
           <div class="row" id="features">
