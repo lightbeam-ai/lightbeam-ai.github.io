@@ -3,9 +3,24 @@
   <head>
     <title>Lightbeam</title>
     <script src="https://s3-us-west-2.amazonaws.com/cdn.thegrid.io/gss/v2.0.0/v2.0.0/gss.js"></script>
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.typeit/4.2.3/typeit.min.js"></script>
     <script type="text/javascript">
       /* you can see what is going on in the engine with console.log(window.engine) */
       window.engine = new GSS(document);
+      var str1 = 'correlate dissolved oxygen and cell density in GE Wave 20E in Malvern B5 from 1/1/2015 to 6/1/2015';
+      $(document).ready(function () {
+        $('#hd-wd-query-text').typeIt({
+          strings: str1,
+          speed: 25
+        }).
+        tiPause(5000).
+        tiDelete(str1.length).
+        tiPause(1000).
+        tiType(
+          'run a cstr model with process data from unit #2 at the Detroit site on August 15th'
+        );
+      });
     </script>
     <style type="text/css">
       body {
@@ -58,7 +73,7 @@
       }
 
       #hd-wd-outer {
-        background-color: rgba(255, 255, 255, 0.5);
+        background-color: rgba(255, 255, 255, 0.35);
         z-index: 0.25;
       }
 
@@ -301,9 +316,41 @@
           #hd-wd-c0[cy] == #hd-wd-c1[cy] == #hd-wd-c2[cy] == (#hd-wd-outer[top] + #hd-wd-inner[top]) / 2;
           @h <#hd-wd-outer[left]>-[circle-diameter]-(#hd-wd-c0)-(#hd-wd-c1)-(#hd-wd-c2) gap(circle-diameter * 0.66);
 
+          /* contents */
+            /* position */
+              @v |-48-(#hd-wd-contents)-0-| in(#hd-wd-inner);
+                @v |-(#hd-wd-query)-(#hd-wd-answer)-| gap(0) in(#hd-wd-contents);
+                  #hd-wd-query[height] == #hd-wd-query-text[height] + 24;
+                  #hd-wd-query[cy] == #hd-wd-query-text[cy];
+                  #hd-wd-query[border-radius] == #hd-wd-inner[border-radius];
+                  #hd-wd-query {
+                    z-index: == 1;
+                    border-style: solid;
+                    border-width: 0.25px;
+                    border-color: rgba(120,0,120,0.10);
+                    background-color: rgba(255,255,255,0.35);
+                  }
+                  #hd-wd-query-text {
+                    height: == &[intrinsic-height];
+                    font-family: Futura, sans-serif;
+                    color: #B462B1;
+                    font-size: == 24;
+                    text-align: center;
+                  }
+
+              #hd-wd-contents[cx] == #hd-wd-inner[cx];
+              @h <#hd-wd-inner[left]>-60-(#hd-wd-contents);
+                #hd-wd-query[width] ==
+                  #hd-wd-query-text[width] + 30 * 2 ==
+                  #hd-wd-answer[width] ==
+                  #hd-wd-contents[width];
+                #hd-wd-query[cx] == #hd-wd-query-text[cx] == #hd-wd-answer[cx] == #hd-wd-contents[cx];
+
+            /* styling */
+
       /* features definitions */
 
-        @v |-96-(#top-label)-(#box-cluster)-| gap(72) in(#features);
+        @v |-96-(#top-label)-(#box-cluster)-48-| gap(72) in(#features);
 
         /* top-label */
           @v |-(#top-label .text-header (== 63))-(#top-label .text-description (== 90))-| gap(0) in(#top-label);
@@ -323,18 +370,64 @@
             #box-bottom[border-radius] ==
             24;
           #box-center[top] == #box-cluster[top];
-            #box-left[height] == #box-right[height] == #box-center[height] - 72 == 400;
+            #box-left[height] == #box-right[height] == #box-center[height] - 96 == 384;
             #box-left[cy] == #box-center[cy] == #box-right[cy];
 
             #box-bottom[top] == #box-left[bottom] - ft-box-radius;
-            #box-bottom[height] == 300;
+            #box-bottom[height] == 360;
 
             #box-cluster[height] == #box-center[height] + #box-bottom[height];
 
           @h |-48-(#box-cluster)-48-| in(#g-outer);
           @h |-(.feature-box(== #box-cluster[width] / 3))-0-...-| in(#box-cluster);
           #box-bottom[cx] == #g-outer[cx];
-          #box-bottom[width] == #box-cluster[width] - 96;
+          #box-bottom[width] == #box-cluster[width] - 288;
+
+        /* feature box contents */
+          .feature-container {
+            @v |-60-(div, img)-24-...~| in(&);
+
+            .feature-box-img, .feature-box-title, -feature-box-desc {
+              center-x: == ^[center-x];
+            }
+
+            .feature-box-img, .feature-box-title {
+              width: == &[intrinsic-width];
+            }
+
+            .feature-box-title, .feature-box-desc {
+              height: == &[intrinsic-height];
+              text-align: center;
+            }
+
+            .feature-box-img {
+              height: == 72;
+            }
+
+            .feature-box-title {
+              color: #8B42A0;
+              font-family: Futura, sans-serif;
+              font-size: == 24;
+            }
+
+            .feature-box-desc {
+              font-family: Rockwell, serif;
+              width: == ^[width] - 36 * 2;
+              center-x: == ^[center-x];
+              color: rgba(107,124,148,1.0);
+            }
+          }
+
+          #box-bottom {
+            .feature-box-desc {
+              font-size: == 21;
+            }
+
+            .feature-box-title {
+              font-size: == 36;
+            }
+          }
+          (#box-bottom .feature-box-title)[top] >= #box-center[bottom] + 48;
 
       /* walkthrough definitions */
         /* styling */
@@ -478,9 +571,6 @@
             <img id="logo" src="./logo.png" />
             <div id="navbar">
               <div id="first-label" class="label">
-                Products
-              </div>
-              <div class="label">
                 Solutions
               </div>
               <div class="label">
@@ -508,7 +598,16 @@
                 <div class="hd-wd-circle" id="hd-wd-c0"></div>
                 <div class="hd-wd-circle" id="hd-wd-c1"></div>
                 <div class="hd-wd-circle" id="hd-wd-c2"></div>
-                <div id="hd-wd-inner"></div>
+                <div id="hd-wd-inner">
+                  <div id="hd-wd-contents">
+                    <div id="hd-wd-query">
+                      <div id="hd-wd-query-text"></div>
+                    </div>
+
+                    <div id="hd-wd-answer">
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -523,10 +622,44 @@
             </div>
 
             <div id="box-cluster">
-              <div id="box-left" class="feature-box"></div>
-              <div id="box-center" class="feature-box"></div>
-              <div id="box-right" class="feature-box"></div>
-              <div id="box-bottom"></div>
+              <div id="box-left" class="feature-box feature-container">
+                <img class="feature-box-img" src="./box-left-img.png"></img>
+                <div class="feature-box-title">
+                  Data integration
+                </div>
+                <div class="feature-box-desc">
+                  With Lightbeam, you&rsquo;ll never have to wait for your DBA or historian again. Every process engineer can be granted the ability to query any database connected to Lightbeam in English.
+                </div>
+              </div>
+              <div id="box-center" class="feature-box feature-container">
+                <img class="feature-box-img" src="./box-center-img.png"></img>
+                <div class="feature-box-title">
+                  Machine learning<br>and statistics
+                </div>
+                <div class="feature-box-desc">
+                  Bring advanced tools to your process with built-in neural networks, classifiers, clustering, and other machine learning techniques supported out of the box.  Standard statistical operations are also supported. Without any code, you could be doing predictive analytics!
+                </div>
+              </div>
+              <div id="box-right" class="feature-box feature-container">
+                <img class="feature-box-img" src="./box-right-img.png"></img>
+                <div class="feature-box-title">
+                  Numerical modeling
+                </div>
+                <div class="feature-box-desc">
+                  Lightbeam allows you to solve sophisticated systems of partial differential equations without any spreadsheet hackery, numerical chops, or programming expertise.
+                </div>
+              </div>
+              <div id="box-bottom" class="feature-container">
+                <div class="feature-box-title">
+                  Faster analytics, leaner business
+                </div>
+                <div class="feature-box-desc">
+                  Faster resolution for adverse events.<br>
+Faster process R&amp;D iteration.<br>
+Faster control strategy development.<br>
+Fewer experiments required.
+                </div>
+              </div>
             </div>
           </div>
           <div class="row" id="walkthrough">
