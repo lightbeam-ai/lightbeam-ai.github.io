@@ -160,6 +160,21 @@
           font-family: Futura, sans-serif;
         }
 
+        #cta-btn1, #cta-btn2 {
+          border-radius: 6px;
+          box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        #cta-btn1 {
+          background-color: #ffffff;
+          color: #B58CBA;
+        }
+
+        #cta-btn2 {
+          background-color: #914CA5;
+          color: #ffffff;
+        }
+
         #cta-header {
           color: #8B41A0;
         }
@@ -297,8 +312,6 @@
 
             #hd-wd-inner[top] == #hd-wd-outer[top] + hd-wd-edge-height;
             #hd-wd-inner[bottom] == #hd-wd-outer[bottom] - hd-wd-edge-width;
-
-
 
           /* horizontal */
             /* it's next to the title's right edge, and bounded by outer div */
@@ -537,15 +550,17 @@
         /* styling */
 
         /* vertical */
-        @v |-(#cta-header)-36-(#cta-btnrow)-| gap(54) in(#cta);
+        @v |-(#cta-header)-24-(#cta-btnrow)-| gap(36) in(#cta);
         #cta-header[height] == #cta-header[line-height] == #cta-btnrow[height] == 54;
+        #cta-btn1[height] == #cta-btn2[height] ==
+          #cta-btn1[line-height] == #cta-btn2[line-height] == 48;
         #cta-header[font-size] == 36;
 
         /* horizontal */
         #cta-header[cx] == #cta-btnrow[cx] == page-midpoint;
         #cta-header[left] == #g-outer[left];
-        #cta-btnrow[width] == 380;
-        @h |-0-(#cta-btn1 (== 144))-54-(#cta-btn2 (== 144))-0-| in(#cta-btnrow);
+        #cta-btnrow[width] == 500;
+        @h |-0-(#cta-btn1 (== 168))-24-(#cta-btn2 (== 168))-0-| in(#cta-btnrow);
 
       /* footer TODO */
         /* horizontal */
