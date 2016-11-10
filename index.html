@@ -8,7 +8,7 @@
     <script type="text/javascript">
       /* you can see what is going on in the engine with console.log(window.engine) */
       window.engine = new GSS(document);
-      var str1 = 'correlate dissolved oxygen and cell density in GE Wave 20E in Malvern B5 from 1/1/2015 to 6/1/2015';
+      var str1 = 'correlate oxygen and cell density in Malvern since August';
       $(document).ready(function () {
         $('#hd-wd-query-text').typeIt({
           strings: str1,
@@ -18,7 +18,7 @@
         tiDelete(str1.length).
         tiPause(1000).
         tiType(
-          'run a cstr model with process data from unit #2 at the Detroit site on August 15th'
+          'run a cstr model with process data from unit #2'
         );
       });
     </script>
@@ -43,7 +43,7 @@
         font-weight: normal;
       }
       h2 {
-        font-family: Rockwell, serif;
+        font-family: Avenir, serif;
         font-weight: normal;
       }
       .label {
@@ -148,7 +148,7 @@
 
       .text-description {
         text-align: center;
-        font-family: Rockwell, serif;
+        font-family: Avenir, serif;
         font-size: 20px;
         line-height: 30px;
         color: rgba(107,124,148,1.0);
@@ -454,7 +454,7 @@
             }
 
             .feature-box-desc {
-              font-family: Rockwell, serif;
+              font-family: Avenir, serif;
               width: == ^[width] - 36 * 2;
               center-x: == ^[center-x];
               color: rgba(107,124,148,1.0);
@@ -488,7 +488,7 @@
         }
 
         .wt-desc {
-          font-family: Rockwell, serif;
+          font-family: Avenir, serif;
           font-size: == 18;
           font-weight: lighter;
           color: rgba(255, 255, 255, 0.85);
