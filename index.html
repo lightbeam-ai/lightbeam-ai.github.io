@@ -73,21 +73,16 @@
         //text-shadow: none !important;
       }
       #header-secondary {
-        //background: linear-gradient(to bottom, rgba(20,20,20, 0.35), rgba(20,20,20, 0.45));
+        background: linear-gradient(to bottom, rgba(239, 120, 154, 1.0), rgba(239, 120, 154, 0.7));
         color: #ffffff;
         text-shadow: 0px 0px 1px rgba(0,0,0,0.7);
-        border-color: rgba(255, 255, 255, 0.5);
-        border-style: solid;
-        border-width: 0.5px;
-        box-shadow: none;
         cursor: pointer;
       }
       #header-secondary:hover {
-        background-color: #ffffff;
-        color: rgba(188,103,193,1.0);
-        text-shadow: none;
+        background: linear-gradient(to bottom, rgba(239, 120, 154, 1.0), rgba(239, 120, 154, 0.85));
       }
       #header-secondary:active {
+        background: linear-gradient(to bottom, rgba(239, 120, 154, 0.85), rgba(239, 120, 154, 1.0));
       }
 
       #header-primary {
@@ -130,6 +125,7 @@
 
       #features {
         z-index: 1;
+        //background: linear-gradient(270deg, #FFF4D9, #F8EAFF, #EBF6FF);
         box-shadow: 0 0 64px rgba(60,10,73,0.44);
       }
 
@@ -143,7 +139,7 @@
         font-family: Futura, sans-serif;
         font-size: 36px;
         line-height: 54px;
-        color: #8B41A0;
+        color: #BD3E72;
       }
 
       .text-description {
@@ -175,7 +171,7 @@
         border-color: rgba(60,10,73,0.32);
         border-style: solid;
         border-width: 0.25px;
-        box-shadow: 0 0 30px rgba(60, 10, 73, 0.12);
+        //box-shadow: 0 0 30px rgba(60, 10, 73, 0.12);
 
         z-index: 2;
       }
@@ -247,7 +243,7 @@
 
       /* content grid */
       #g-outer[top] == #main[top];
-      #g-outer[width] == #main[width] * 0.8;
+      #g-outer[width] == #main[width] * 0.8 !strong;
       #g-outer[width] <= 1100 !strong;
       #g-outer[cx] == #main[cx];
 
@@ -396,7 +392,12 @@
         @v |-96-(#top-label)-(#box-cluster)-48-| gap(72) in(#features);
 
         /* top-label */
-          @v |-(#top-label .text-header (== 63))-(#top-label .text-description (== 90))-| gap(0) in(#top-label);
+          @v |-(#top-label .text-header)-12-(#top-label .text-description)-| gap(0) in(#top-label);
+          #top-label {
+            .text-header, .text-description {
+              height: == &[intrinsic-height];
+            }
+          }
           #top-label[cx] == #g-outer[cx];
           (#top-label .text-header)[width] ==
             #top-label[width] ==
@@ -413,7 +414,7 @@
             #box-bottom[border-radius] ==
             24;
           #box-center[top] == #box-cluster[top];
-            #box-left[height] == #box-right[height] == #box-center[height] - 96 == 384;
+            #box-left[height] == #box-right[height] <= #box-center[height];
             #box-left[cy] == #box-center[cy] == #box-right[cy];
 
             #box-bottom[top] == #box-left[bottom] - ft-box-radius;
@@ -428,7 +429,8 @@
 
         /* feature box contents */
           .feature-container {
-            @v |-60-(div, img)-24-...~| in(&);
+            centerer >= 60;
+            @v |-[centerer]-(div, img)-24-...-[centerer]-| in(&);
 
             .feature-box-img, .feature-box-title, -feature-box-desc {
               center-x: == ^[center-x];
@@ -448,7 +450,7 @@
             }
 
             .feature-box-title {
-              color: #8B42A0;
+              color: #BD3E72;
               font-family: Futura, sans-serif;
               font-size: == 24;
             }
@@ -570,7 +572,7 @@
         /* misc */
         #walkthrough .text-header {
           color: #ffffff;
-          height: == &[line-height];
+          height: == &[intrinsic-height];
         }
         (#walkthrough .text-header)[width] == #g-outer[width];
         (#walkthrough .text-header)[cx] == #g-outer[cx];
@@ -673,7 +675,7 @@
                   Data integration
                 </div>
                 <div class="feature-box-desc">
-                  With Lightbeam, you&rsquo;ll never have to wait for your DBA or historian again. Every process engineer can be granted the ability to query any database connected to Lightbeam in English.
+                  With Lightbeam, you’ll never have to wait for your DBA or historian again. Query any database connected to Lightbeam in English.
                 </div>
               </div>
               <div id="box-center" class="feature-box feature-container">
@@ -682,7 +684,7 @@
                   Machine learning<br>and statistics
                 </div>
                 <div class="feature-box-desc">
-                  Bring advanced tools to your process with built-in neural networks, classifiers, clustering, and other machine learning techniques supported out of the box.  Standard statistical operations are also supported. Without any code, you could be doing predictive analytics!
+                  Lightbeam makes machine learning techniques accessible to anyone without having to type a single line of code.
                 </div>
               </div>
               <div id="box-right" class="feature-box feature-container">
@@ -691,7 +693,7 @@
                   Numerical modeling
                 </div>
                 <div class="feature-box-desc">
-                  Lightbeam allows you to solve sophisticated systems of partial differential equations without any spreadsheet hackery, numerical chops, or programming expertise.
+                  Lightbeam lets you solve complex systems of differential equations without any spreadsheet hackery or programming expertise.
                 </div>
               </div>
               <div id="box-bottom" class="feature-container">
