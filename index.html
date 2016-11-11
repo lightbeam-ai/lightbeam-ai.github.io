@@ -89,28 +89,28 @@
         box-shadow: 3px 3px 16px rgba(0,0,0,0.35);
         //text-shadow: none !important;
       }
-      #header-secondary {
+      #header-secondary, #cta-btn1 {
         background: linear-gradient(to bottom, rgba(239, 120, 154, 1.0), rgba(239, 120, 154, 0.7));
         color: #ffffff;
         text-shadow: 0px 0px 1px rgba(0,0,0,0.7);
         cursor: pointer;
       }
-      #header-secondary:hover {
+      #header-secondary:hover, #cta-btn1:hover {
         background: linear-gradient(to bottom, rgba(239, 120, 154, 1.0), rgba(239, 120, 154, 0.85));
       }
-      #header-secondary:active {
+      #header-secondary:active, #cta-btn1:active {
         background: linear-gradient(to bottom, rgba(239, 120, 154, 0.85), rgba(239, 120, 154, 1.0));
       }
 
-      #header-primary {
+      #header-primary, #cta-btn2 {
         background: linear-gradient(to bottom, #ffffff, rgba(255,255,255,0.8));
         color: #6754BA;
         cursor: pointer;
       }
-      #header-primary:hover {
+      #header-primary:hover, #cta-btn2:hover {
         background: linear-gradient(to bottom, #ffffff, rgba(255,255,255,0.9));
       }
-      #header-primary:active {
+      #header-primary:active, #cta-btn2: active {
         background: linear-gradient(to top, #ffffff, rgba(255,255,255,0.9));
       }
 
@@ -195,7 +195,7 @@
       #cta {
         z-index: 1;
         box-shadow: 0 0 64px rgba(60,10,73,0.44);
-        background-color: #F6F9FC;
+        background: linear-gradient(70deg, rgba(38, 173, 235, 0.3), rgba(141, 105, 212, 0.3), rgba(191, 106, 189, 0.3));
       }
 
         #cta-header, #cta-btn1, #cta-btn2 {
@@ -203,23 +203,8 @@
           font-family: Futura, sans-serif;
         }
 
-        #cta-btn1, #cta-btn2 {
-          border-radius: 6px;
-          box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        #cta-btn1 {
-          background-color: #ffffff;
-          color: #B58CBA;
-        }
-
-        #cta-btn2 {
-          background-color: #914CA5;
-          color: #ffffff;
-        }
-
         #cta-header {
-          color: #8B41A0;
+          color: rgba(110, 75, 150, 0.8);
         }
 
 
@@ -245,12 +230,8 @@
 
     </style>
     <style type="text/gss">
-      body {
-        background-color: #eeeeee;
-      }
-
       #main {
-        width: == ::window[width] * 1.0 !strong;
+        width: == ::window[width] !strong;
         top: == 0 !strong;
 
         box-shadow: 0px 0px 5px 0px #888888;
@@ -342,11 +323,11 @@
 
         /* window simulation */
           /* bezel on outside of window */
-          hd-wd-edge-width == 4 !required;
+          hd-wd-edge-width == 0.5 !required;
           /* titlebar size */
           hd-wd-edge-height == 42 !required;
 
-          #hd-wd-inner[border-radius] == #hd-wd-outer[border-radius] == 2 * hd-wd-edge-width;
+          #hd-wd-outer[border-radius] == 8;
 
           /* vertical */
             /* starts at top */
@@ -365,7 +346,7 @@
             #hd-wd-inner[left] == #hd-wd-outer[left] + hd-wd-edge-width;
             #hd-wd-inner[cx] == #hd-wd-outer[cx];
 
-          circle-diameter == hd-wd-edge-width * 3 !required;
+          circle-diameter == 12;
           .hd-wd-circle[width] ==
             .hd-wd-circle[height] ==
             2 * .hd-wd-circle[border-radius] ==
@@ -379,7 +360,7 @@
                 @v |-(#hd-wd-query)-(#hd-wd-answer)-| gap(0) in(#hd-wd-contents);
                   #hd-wd-query[height] == #hd-wd-query-text[height] + 24;
                   #hd-wd-query[cy] == #hd-wd-query-text[cy];
-                  #hd-wd-query[border-radius] == #hd-wd-inner[border-radius];
+                  #hd-wd-query[border-radius] == #hd-wd-outer[border-radius];
                   #hd-wd-query {
                     z-index: == 1;
                     border-style: solid;
@@ -612,8 +593,7 @@
         /* horizontal */
         #cta-header[cx] == #cta-btnrow[cx] == page-midpoint;
         #cta-header[left] == #g-outer[left];
-        #cta-btnrow[width] == 500;
-        @h |-0-(#cta-btn1 (== 168))-24-(#cta-btn2 (== 168))-0-| in(#cta-btnrow);
+        @h |-0-(#cta-btn2 (== 168))-24-(#cta-btn1 (== 144))-0-| in(#cta-btnrow);
 
       /* footer TODO */
         /* horizontal */
@@ -774,8 +754,8 @@ Fewer experiments required.
           <div class="row" id="cta">
             <div id="cta-header">So, what do you think?</div>
             <div id="cta-btnrow">
-              <div id="cta-btn1">Read whitepapers</div>
-              <div id="cta-btn2">Schedule demo</div>
+              <div class="button" id="cta-btn1">Learn more</div>
+              <div class="button" id="cta-btn2">Schedule demo</div>
             </div>
           </div>
           <div class="row" id="footer">
