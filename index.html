@@ -23,6 +23,23 @@
       });
     </script>
     <style type="text/css">
+      @-webkit-keyframes MovingGradient {
+          0%{background-position:0% 50%}
+          50%{background-position:100% 50%}
+          100%{background-position:0% 50%}
+      }
+
+      @-moz-keyframes MovingGradient {
+          0%{background-position:0% 50%}
+          50%{background-position:100% 50%}
+          100%{background-position:0% 50%}
+      }
+      @keyframes MovingGradient {
+          0%{background-position:0% 50%}
+          50%{background-position:100% 50%}
+          100%{background-position:0% 50%}
+      }
+
       a {
         border: none;
         outline: none;
@@ -414,11 +431,10 @@
             #box-bottom[border-radius] ==
             24;
           #box-center[top] == #box-cluster[top];
-            #box-left[height] == #box-right[height] <= #box-center[height];
+            #box-left[height] == #box-right[height] <= #box-center[height] - 48;
             #box-left[cy] == #box-center[cy] == #box-right[cy];
 
-            #box-bottom[top] == #box-left[bottom] - ft-box-radius;
-            #box-bottom[height] == 360;
+            #box-bottom[top] <= #box-left[bottom] - ft-box-radius;
 
             #box-cluster[height] == #box-center[height] + #box-bottom[height];
 
@@ -464,6 +480,10 @@
           }
 
           #box-bottom {
+            .feature-box-img {
+              height: == 108 !required;
+            }
+
             .feature-box-desc {
               font-size: == 21;
             }
@@ -472,7 +492,7 @@
               font-size: == 36;
             }
           }
-          (#box-bottom .feature-box-title)[top] >= #box-center[bottom] + 48;
+          (#box-bottom .feature-box-img)[top] >= #box-center[bottom] + 48;
 
       /* walkthrough definitions */
         /* styling */
@@ -661,7 +681,7 @@
           <div class="row" id="features">
             <div id="top-label">
               <div class="text-header">
-                The robot analyst built for process engineers
+                Siri for process data analysis
               </div>
               <div class="text-description">
                 Why do simple things have to be so complicated? At Lightbeam, we believe they don&rsquo;t. Beneath our intuitive English interface, there&rsquo;s a powerful data integration engine and an analytics suite supporting both machine learning and numerical modeling. No code required.
@@ -670,7 +690,7 @@
 
             <div id="box-cluster">
               <div id="box-left" class="feature-box feature-container">
-                <img class="feature-box-img" src="./box-left-img.png"></img>
+                <img class="feature-box-img" src="./box-left-img.svg"></img>
                 <div class="feature-box-title">
                   Data integration
                 </div>
@@ -679,7 +699,7 @@
                 </div>
               </div>
               <div id="box-center" class="feature-box feature-container">
-                <img class="feature-box-img" src="./box-center-img.png"></img>
+                <img class="feature-box-img" src="./box-center-img.svg"></img>
                 <div class="feature-box-title">
                   Machine learning<br>and statistics
                 </div>
@@ -688,7 +708,7 @@
                 </div>
               </div>
               <div id="box-right" class="feature-box feature-container">
-                <img class="feature-box-img" src="./box-right-img.png"></img>
+                <img class="feature-box-img" src="./box-right-img.svg"></img>
                 <div class="feature-box-title">
                   Numerical modeling
                 </div>
@@ -697,6 +717,7 @@
                 </div>
               </div>
               <div id="box-bottom" class="feature-container">
+                <img class="feature-box-img" src="./box-bottom-img.svg"></img>
                 <div class="feature-box-title">
                   Faster analytics, leaner business
                 </div>
