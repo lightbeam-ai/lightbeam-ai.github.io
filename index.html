@@ -505,6 +505,14 @@
                   #hd-wd-contents[width];
                 #hd-wd-query[cx] == #hd-wd-query-text[cx] == .hd-wd-answer[cx] == #hd-wd-contents[cx];
 
+              .hd-wd-answer {
+                .hd-wd-answer-img {
+                  center-x: == ^[center-x];
+                  height: == ^[height];
+                  width: == &[intrinsic-width];
+                }
+              }
+
             /* styling */
 
       /* features definitions */
@@ -850,10 +858,10 @@
                     </div>
 
                     <div id="hd-wd-answer-0" class="hd-wd-answer">
-                      stuff
+                      <img class="hd-wd-answer-img" src="./correlate.png"></img>
                     </div>
                     <div id="hd-wd-answer-1" class="hd-wd-answer">
-                      stuff2
+                      <img class="hd-wd-answer-img" src="./cstr.png"></img>
                     </div>
                   </div>
                 </div>
@@ -863,7 +871,7 @@
           <div class="row" id="features">
             <div id="top-label">
               <div class="text-header">
-                Process data analysis usable in plain English
+                Process modeling and data analysis usable in plain English
               </div>
               <div class="text-description">
                 <div class="text-description-line">
