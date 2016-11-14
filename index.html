@@ -51,8 +51,6 @@
       }
 
       a {
-        border: none;
-        outline: none;
         text-decoration: none;
         color: inherit;
       }
@@ -106,6 +104,14 @@
 
       #mkt-header {
         color: rgb(50, 151, 211);
+      }
+
+      #business-header {
+        color: rgb(226, 89, 80);
+      }
+
+      #tech-header {
+        color: rgb(183, 106, 196);
       }
 
       .dropdown-item:hover {
@@ -314,7 +320,7 @@
       /* header definitions */
 
         #logo[cx] == (#first-label[left] + #last-label[right]) * 0.5;
-        #logo[width] == #navbar[width] * 0.6;
+        #logo[width] == #navbar[width] * 1.0;
         #logo[height] == #logo[width] * 116 / 578 !strong;
 
 
@@ -389,11 +395,6 @@
             }
           }
         }
-
-        //@v |-(#first-item)-(#second-item)-(#third-item)-| gap(0) in(#first-window) !required;
-
-
-
 
         #jumbotron-title, #jumbotron-subtitle {
           height: == &[intrinsic-height];
@@ -490,15 +491,25 @@
         /* top-label */
           @v |-(#top-label .text-header)-12-(#top-label .text-description)-| gap(0) in(#top-label);
           #top-label {
-            .text-header, .text-description {
+            .text-header, .text-description-line {
               height: == &[intrinsic-height];
             }
+
+            .text-description {
+              @v |-(& .text-description-line)-...-| gap(12);
+              @h |-(& .text-description-line)-| gap(0);
+            }
+
+            .big-line {
+              font-size: == 21;
+              font-weight: bold;
+            }
           }
-          #top-label[cx] == #g-outer[cx];
+          #top-label[cx] == .text-description[cx] == .text-description-line[cx] == #g-outer[cx];
           (#top-label .text-header)[width] ==
             #top-label[width] ==
             (#top-label .text-description)[width] ==
-            #g-outer[width] - 270;
+            #g-outer[width] - 360;
 
         /* feature boxes */
           ft-box-radius ==
@@ -668,6 +679,24 @@
           @h |-96-(#wt-e0)-(#wt-b0)-(#wt-0)-144-| gap(wt-standard-spacing) in(#g-outer);
           @h |-96-(#wt-e2)-(#wt-b2)-(#wt-2)-144-| gap(wt-standard-spacing) in(#g-outer);
 
+        .wt-example {
+          @v |-(& .wt-example-text)-(& .wt-example-output)-| gap(36) in(&);
+
+          .wt-example-text {
+            @h |-(&)-| gap(36) in(^);
+
+            height: == &[intrinsic-height];
+            text-align: center;
+            font-family: Futura, sans-serif;
+            font-size: == 18;
+            color: rgba(255, 255, 255, 0.75);
+          }
+
+          .wt-example-output {
+            @h |-(&)-| gap(36) in(^);
+          }
+        }
+
         /* misc */
         #walkthrough .text-header {
           color: #ffffff;
@@ -746,22 +775,29 @@
                 </div>
               </div>
               <div class="dropdown">
-                <div id="middle-label" class="label">
+                <div id="last-label" class="label">
                   Whitepapers
                 </div>
                 <div class="dropdown-content">
                   <div class="dropdown-cw">
-                    Blah blah blah
-                  </div>
-                </div>
-              </div>
-              <div class="dropdown">
-                <div id="last-label" class="label">
-                  About us
-                </div>
-                <div class="dropdown-content">
-                  <div class="dropdown-cw">
-                    Blah blah blah
+                    <a href="./biz-wp.pdf">
+                      <div class="dropdown-item">
+                        <img class="dropdown-logo" src="./business.svg" />
+                        <div id="business-header" class="dropdown-header">Business</div>
+                        <div class="dropdown-item-desc">
+                          The business case for Lightbeam, including insight into recent trends
+                        </div>
+                      </div>
+                    </a>
+                    <a href="./tech-wp.pdf">
+                      <div class="dropdown-item">
+                        <img class="dropdown-logo" src="./technology.svg" />
+                        <div id="tech-header" class="dropdown-header">Technology</div>
+                        <div class="dropdown-item-desc">
+                          A summary of the architecture and proven technology behind Lightbeam
+                        </div>
+                      </div>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -776,8 +812,8 @@
                 market with an intuitive, English-based<br>
                 interface to data analysis.
               </h2>
-              <div class="button" id="header-primary">Schedule demo</div>
-              <div class="button" id="header-secondary">Learn more</div>
+              <a href="https://lightbeam.typeform.com/to/fxf4D7"><div class="button" id="header-primary">Schedule demo</div></a>
+              <a href="mailto:michael@lightbeam.ai"><div class="button" id="header-secondary">Learn more</div></a>
             </div>
             <div>
               <div id="hd-wd-outer">
@@ -803,7 +839,13 @@
                 Siri for process data analysis
               </div>
               <div class="text-description">
-                Why do simple things have to be so complicated? At Lightbeam, we believe they don&rsquo;t. Beneath our intuitive English interface, there&rsquo;s a powerful data integration engine and an analytics suite supporting both machine learning and numerical modeling. No code required.
+                <div class="text-description-line">
+                  <b>Why do simple things have to be so complicated? At Lightbeam, we believe they don&rsquo;t.</b>
+                </div>
+                <div class="text-description-line">
+                  Beneath our intuitive English interface, there&rsquo;s a powerful data integration engine and an analytics suite supporting both machine learning and numerical modeling.
+                </div>
+                <div class="big-line text-description-line">No code required.</div>
               </div>
             </div>
 
@@ -883,17 +925,32 @@ Fewer experiments required.
               It&rsquo;s easy to do root cause analysis when hypothesis verification is a second and a question away.
             </div>
             <div class="wt-example" id="wt-e0">
+              <div class="wt-example-text">
+                show process parameters from all units at the Philly site from August
+              </div>
+              <div class="wt-example-output">
+              </div>
             </div>
             <div class="wt-example" id="wt-e1">
+              <div class="wt-example-text">
+                run a cstr model with process data from unit 2
+              </div>
+              <div class="wt-example-output">
+              </div>
             </div>
             <div class="wt-example" id="wt-e2">
+              <div class="wt-example-text">
+                correlate dissolved oxygen and cell density in unit 2 from May 2016
+              </div>
+              <div class="wt-example-output">
+              </div>
             </div>
           </div>
           <div class="row" id="cta">
             <div id="cta-header">So, what do you think?</div>
             <div id="cta-btnrow">
               <div class="button" id="cta-btn1">Learn more</div>
-              <div class="button" id="cta-btn2">Schedule demo</div>
+              <a href="https://lightbeam.typeform.com/to/fxf4D7"><div class="button" id="cta-btn2">Schedule demo</div></a>
             </div>
           </div>
           <div class="row" id="footer">
@@ -908,8 +965,8 @@ Fewer experiments required.
             <div class="footer-col" id="footer-c2">
               <div class="footer-col-header">Whitepapers</div>
               <div class="footer-col-items">
-                <a href='#'>Technology</a><br>
-                <a href='#'>Your business</a><br>
+                <a href='./biz-wp.pdf'>Your business</a><br>
+                <a href='./tech-wp.pdf'>Technology</a><br>
                 <a href='#'>Roadmap</a>
               </div>
             </div>
