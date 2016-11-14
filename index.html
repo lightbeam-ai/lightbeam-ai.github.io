@@ -4,12 +4,38 @@
     <title>Lightbeam</title>
     <script src="https://s3-us-west-2.amazonaws.com/cdn.thegrid.io/gss/v2.0.0/v2.0.0/gss.js"></script>
     <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/jquery.typeit/4.2.3/typeit.min.js"></script>
+    <script src="./typed.min.js"></script>
     <script type="text/javascript">
       /* you can see what is going on in the engine with console.log(window.engine) */
       window.engine = new GSS(document);
 
       var str1 = 'correlate oxygen and cell density in Malvern since August';
+      var str2 = 'run a cstr model with process data from unit #2';
+      var backDelay = 5000;
+
+      $(function() {
+        $('#hd-wd-query-text').typed({
+          strings: [str1, str2],
+          loop: true,
+          loopCount: false,
+          showCursor: true,
+          cursorChar: '|',
+          backDelay: 5000,
+          preStringTyped: function () {
+            $('.hd-wd-answer').hide();
+          },
+          onStringTyped: function (arrayPos) {
+            $('#hd-wd-answer-' + arrayPos).show();
+            setTimeout(function () {
+              $('.hd-wd-answer').hide();
+            }, backDelay);
+          },
+          resetCallback: function () {
+            $('.hd-wd-answer').hide();
+          }
+        });
+      });
+
       $(document).ready(function () {
         $('#hd-wd-query-text').typeIt({
           strings: str1,
@@ -19,11 +45,20 @@
         tiDelete(str1.length).
         tiPause(1000).
         tiType(
-          'run a cstr model with process data from unit #2'
         );
       });
     </script>
     <style type="text/css">
+      @font-face {
+        font-family: 'Avenir';
+        src: url('./Avenir.ttc');
+      }
+
+      @font-face {
+        font-family: 'Futura';
+        src: url('./Futura.ttc');
+      }
+
       .dropdown-content {
         display: none;
       }
@@ -455,7 +490,7 @@
           /* contents */
             /* position */
               @v |-48-(#hd-wd-contents)-0-| in(#hd-wd-inner);
-                @v |-(#hd-wd-query)-(#hd-wd-answer)-| gap(0) in(#hd-wd-contents);
+                @v |-(#hd-wd-query)-36-(.hd-wd-answer)-| gap(0) in(#hd-wd-contents);
                   #hd-wd-query[height] == #hd-wd-query-text[height] + 24;
                   #hd-wd-query[cy] == #hd-wd-query-text[cy];
                   #hd-wd-query[border-radius] == #hd-wd-outer[border-radius];
@@ -478,9 +513,9 @@
               @h <#hd-wd-inner[left]>-60-(#hd-wd-contents);
                 #hd-wd-query[width] ==
                   #hd-wd-query-text[width] + 30 * 2 ==
-                  #hd-wd-answer[width] ==
+                  .hd-wd-answer[width] ==
                   #hd-wd-contents[width];
-                #hd-wd-query[cx] == #hd-wd-query-text[cx] == #hd-wd-answer[cx] == #hd-wd-contents[cx];
+                #hd-wd-query[cx] == #hd-wd-query-text[cx] == .hd-wd-answer[cx] == #hd-wd-contents[cx];
 
             /* styling */
 
@@ -826,7 +861,11 @@
                       <div id="hd-wd-query-text"></div>
                     </div>
 
-                    <div id="hd-wd-answer">
+                    <div id="hd-wd-answer-0" class="hd-wd-answer">
+                      stuff
+                    </div>
+                    <div id="hd-wd-answer-1" class="hd-wd-answer">
+                      stuff2
                     </div>
                   </div>
                 </div>
